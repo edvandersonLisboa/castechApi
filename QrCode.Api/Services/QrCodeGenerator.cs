@@ -1,0 +1,31 @@
+﻿using QRCoder;
+using System.Drawing;
+using System.IO;
+
+namespace QrCode.Api.Services
+{
+    public class QrCodeGenerator
+    {
+        public static Bitmap GenerateImage(string url)
+        {
+            var qrGenerator = new QRCodeGenerator();
+            var qrCodeData = qrGenerator.CreateQrCode(url, QRCodeGenerator.ECCLevel.Q);
+            var qrCode = new QRCode(qrCodeData);
+            Bitmap qrCodeImage = qrCode.GetGraphic(10);
+            return qrCodeImage;
+        }
+
+        public static byte[] GenerateByteArray(string url)
+        {
+            var image = GenerateImage(url);
+            return ImageToByte(image);
+        }
+
+        private static byte[] ImageToByte(System.Drawing.Image img)
+        {
+            using var stream = new MemoryStream();
+            img.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+            return stream.ToArray();
+        }
+    }
+}
