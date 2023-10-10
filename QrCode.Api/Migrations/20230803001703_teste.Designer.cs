@@ -10,8 +10,8 @@ using QrCode.Api.Infrastructures;
 namespace QrCode.Api.Migrations
 {
     [DbContext(typeof(QrCodeDbContext))]
-    [Migration("20230731125959_teste01")]
-    partial class teste01
+    [Migration("20230803001703_teste")]
+    partial class teste
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

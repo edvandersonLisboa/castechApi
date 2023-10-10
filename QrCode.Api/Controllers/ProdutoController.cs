@@ -27,18 +27,7 @@ namespace QrCode.Api.Controllers
         public IActionResult ProdutoId(int id)
         {
             ProdutoEntity prod = DbSet.Find(id);
-            return new ObjectResult(new ProdutoModel
-            {
-                Name = prod.Name,
-                Quantidade = prod.Quantidade,
-                Peso = prod.Peso,
-                Cliente = prod.Cliente,
-                CodProduto = prod.CodProduto,
-                DataExtracao = prod.DataExtracao == null ? "" : DateTime.ParseExact(prod.DataExtracao.ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString(),
-                DataVenda = prod.DataVenda == null ? "" : DateTime.ParseExact(prod.DataVenda.ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString(),
-                Url = prod.Url,
-                UrlQrCode = prod.UrlQrCode,
-            });
+            return new ObjectResult(prod);
         }
         [HttpGet]
         public IActionResult Produtos()
